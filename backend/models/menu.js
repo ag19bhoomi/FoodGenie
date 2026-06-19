@@ -20,7 +20,7 @@ const menuSchema = new mongoose.Schema({
     },
 },
     {
-        toJSON:{virtuals:true}, //virtaul fields when we convert documents to JSON or js
+        toJSON:{virtuals:true}, //virtual fields when we convert documents to JSON or js
         toObject:{virtuals:true}
     },
 )
