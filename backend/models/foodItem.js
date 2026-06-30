@@ -1,21 +1,21 @@
 const mongoose = require("mongoose")
 
 const foodSchema = new mongoose.Schema({
-    name:{
-        type:String,
-        required:[true,"Please enter food item name"],
-        trim: true, //remove white space
-        maxLength:[100,"Please enter name less than 100 characters"]
+    name: {
+        type: String,
+        required: [true,"Please enter foodItem name"],
+        trim: true,
+        maxLength:[100, "FoodItem name cannot more than 100"]
     },
     price:{
-        type: Number,
-        required:[true,"Please enter price"],
-        maxLength:[5,"Food item price cannot exceed more than 5"],
+        type:Number,
+        required:[true,"please enter price"],
+        maxLength:[5,"FoodItem price cannot more than 5"],
         default:0.0
     },
     description:{
         type:String,
-        required:[true,"please Enter the description"]
+        required:[true,"please enter desc"], 
     },
     ratings:{
         type:Number,
@@ -33,25 +33,25 @@ const foodSchema = new mongoose.Schema({
             }
         }
     ],
-    menu:{
+    menu: {
         type:mongoose.Schema.Types.ObjectId,
         ref:"Menu"
     },
     stock:{
         type:Number,
-        required:[true,"Please enter food item"],
-        maxLength:[5,"Food item stock cannot be more than 5"],
+        required:[true,"Please enter foodItem stock"],
+        maxLength:[5, "foodItems stock cannot be more than 5"],
         default:0,
     },
     restaurant:{
         type:mongoose.Schema.Types.ObjectId,
-        ref:"restaurant"
+        ref:"Restaurant"           
     },
     numOfReviews:{
         type:Number,
-        default:0.0
+        default:0
     },
-    reviews:[
+        reviews: [
         {
             name:{
                 type:String,
@@ -59,18 +59,19 @@ const foodSchema = new mongoose.Schema({
             },
             rating:{
                 type:Number,
-                required:true
+                required:true,
             },
-            comment:{
-                type:string,
-                required:true
+            Comment:{
+                 type:String,
+                 required:true
             }
         }
     ],
     createdAt:{
-        type:Data,
+        type:Date,
         default:Date.now()
     }
 })
 
 module.exports = mongoose.model("FoodItem",foodSchema)
+//fooditems

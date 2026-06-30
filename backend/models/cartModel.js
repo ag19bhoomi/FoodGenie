@@ -1,13 +1,13 @@
 const mongoose = require("mongoose");
 
 const cartSchema = new mongoose.Schema({
-    user:{
+    user: { 
         type: mongoose.Schema.Types.ObjectId,
-        ref:"User"
+        ref: "User"
     },
     restaurant:{
         type: mongoose.Schema.Types.ObjectId,
-        re:"restaurant"
+        ref: "Restaurant"
     },
     items:[
         {
@@ -19,7 +19,7 @@ const cartSchema = new mongoose.Schema({
                 type:Number,
                 required:true,
                 default:1,
-                min:1
+                min: 1
             }
         }
     ],
@@ -27,7 +27,7 @@ const cartSchema = new mongoose.Schema({
         type:Date,
         default:Date.now
     }
-})
+}) 
 
-const Cart = mongoose.model("Cart",cartSchema)
+const Cart = mongoose.model("Cart", cartSchema)
 module.exports = Cart;

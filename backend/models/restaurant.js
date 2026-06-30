@@ -4,18 +4,17 @@ const restaurantSchema = new mongoose.Schema({
     name:{
         type:String,
         required: [true,"Please enter the restaurant name"],
-        trim: true,
-        maxLength:[50,"Restaurant name cannot be more than 50 characters"]
+        trim:true,
+        maxLength: [100,"Restaurant name cannot be more than 100 chars"]
     },
 
     isVeg:{
-        type:Boolean,
-        default:false
+      type:Boolean,
+      default:false
     },
-
-    address:{
+    address: {
         type: String,
-        required:[true,"Please provide address"]
+        required:[true, "Please provide address"]
     },
     ratings:{
         type:Number,
@@ -28,16 +27,16 @@ const restaurantSchema = new mongoose.Schema({
     location:
     {
         type:{
-            type: String,
-            enum:["point"],
-            required:true
+            type:String,
+            enum:["Point"],
+            required:true,
         },
         coordinates:{
-            type:Number,
-            required:true
+          type:[Number],
+          required:true
         }
     },
-    reviews:[
+    reviews: [
         {
             name:{
                 type:String,
@@ -45,11 +44,11 @@ const restaurantSchema = new mongoose.Schema({
             },
             rating:{
                 type:Number,
-                required:true 
+                required:true,
             },
             Comment:{
-                type:String,
-                required:true
+                 type:String,
+                 required:true
             }
         }
     ],
@@ -60,18 +59,18 @@ const restaurantSchema = new mongoose.Schema({
                 required:true
             },
             url:{
-                type:String,
+                  type:String,
                 required:true
             }
         }
     ],
     createdAt:{
         type:Date,
-        default:Date.new
+        default:Date.now
     }
 })
 
-restaurantSchema.index({location:"2sphere"});
+restaurantSchema.index({location:"2dsphere"});
 restaurantSchema.index({address:"text"})
 
-module.exports = mongoose.model("restaurant",restaurantSchema)
+module.exports = mongoose.model("Restaurant", restaurantSchema)
